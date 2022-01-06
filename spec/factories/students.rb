@@ -3,6 +3,6 @@ FactoryBot.define do
     name { "MyString" }
     about { "MyString" }
     major { "MyString" }
-    enrolled { false }
+    enrolled { true }
   end
 end
