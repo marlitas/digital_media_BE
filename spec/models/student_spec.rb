@@ -5,13 +5,11 @@ RSpec.describe Student, type: :model do
 
   end
 
-  describe 'attributes' do
-    it 'has a name' do
+  describe 'students' do
+    it 'can add new student' do
+      student = Student.create(name: 'Bert', about: "I'm a student", major: 'DNCE', enrolled: true)
 
-    end
-
-    it 'has an about' do
-
+      expect(Student.all.length).to eq(1)
     end
   end
 end
