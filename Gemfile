@@ -18,6 +18,8 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'factory_bot_rails', '~> 4.0'
 gem 'faker'
+gem 'aws-sdk-s3', require: false
+gem 'figaro'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
