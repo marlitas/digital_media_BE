@@ -32,7 +32,28 @@ RSpec.describe 'Student Requests' do
     end
 
     it 'can send array of students' do
-      
+      get '/api/v1/students'
+
+      res = JSON.parse(response.body)
+
+      expect(res).to be_a(Hash)
+      expect(res['data']).to be_an(Array)
+      res['data'].each do |student|
+        expect(student).to be_a(Hash)
+        expect(student).to have_key('id')
+        expect(student['id']).to be_a(String)
+        expect(student).to have_key('attributes')
+        expect(student['attributes']).to be_a(Hash)
+        expect(student['attributes']).to have_key('name')
+        expect(student['attributes']['name']).to be_a(String)
+        expect(student['attributes']).to have_key('about')
+        expect(student['attributes']['about']).to be_a(String)
+        expect(student['attributes']).to have_key('major')
+        expect(student['attributes']['major']).to be_a(String)
+        expect(student['attributes']).to have_key('enrolled')
+        expect(student['attributes']['enrolled']).to be_in([true, false])
+        expect(student['attributes']).to have_key('code')
+      end
     end
   end
 end
