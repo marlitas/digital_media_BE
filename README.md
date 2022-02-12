@@ -1,24 +1,8 @@
-# README
+# Digital Media Backend
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Endpoints
 
-Things you may want to cover:
+- `GET /api/v1/students`
+- `GET /api/v1/students/:id`
+- `PUT /api/v1/students/:id`
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
