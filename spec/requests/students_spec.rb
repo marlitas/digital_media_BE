@@ -15,7 +15,7 @@ RSpec.describe 'Student Requests' do
 
       expect(res).to be_a(Hash)
       expect(res['data']).to have_key('id')
-      expect(res['data']['id']).to eq(@s1.id)
+      expect(res['data']['id']).to eq("#{@s1.id}")
       expect(res['data']).to have_key('attributes')
       expect(res['data']['attributes']).to be_a(Hash)
       
@@ -27,10 +27,12 @@ RSpec.describe 'Student Requests' do
       expect(res['data']['attributes']['major']).to eq(@s1.major)
       expect(res['data']['attributes']).to have_key('enrolled')
       expect(res['data']['attributes']['enrolled']).to be(true)
+      expect(res['data']['attributes']).to have_key('code')
+      expect(res['data']['attributes']['code']).to eq(nil)
     end
 
     it 'can send array of students' do
-
+      
     end
   end
 end
