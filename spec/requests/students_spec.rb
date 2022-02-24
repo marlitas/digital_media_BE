@@ -59,30 +59,32 @@ RSpec.describe 'Student Requests' do
 
   describe 'create' do
     before :each do
-      post '/api/v1/presigned_url', params: {
-            "file": {
-            "filename": "test_upload",
-            "byte_size": 369830,
-            "checksum": "jTLf6PNJHAxraPivOUT0lg==",
-            "content_type": "image/png",
-            "metadata": {
-                "message": "active_storage_test"
-            }
-            }
-        }
+      # post '/api/v1/presigned_url', params: {
+      #       "file": {
+      #       "filename": "test_upload",
+      #       "byte_size": 369830,
+      #       "checksum": "jTLf6PNJHAxraPivOUT0lg==",
+      #       "content_type": "image/png",
+      #       "metadata": {
+      #           "message": "active_storage_test"
+      #       }
+      #       }
+      #   }
 
-      @res = JSON.parse(response.body)
+      # @res = JSON.parse(response.body)
 
-      let(:avatar) { fixture_file_upload('../../assets/Performers without borders image.png')}
+      # let(:avatar) { fixture_file_upload('../../assets/Performers without borders image.png')}
 
-      put @res['direct_upload']['url'], params: avatar, headers: @res['direct_upload']['headers']
+      # put @res['direct_upload']['url'], params: avatar, headers: @res['direct_upload']['headers']
     end
 
-    it 'can create new student' do 
-      post '/api/v1/students/:id', body: {
+    xit 'can create new student' do 
+      post '/api/v1/students', params: {
         "name": "Sparky Testerson",
         "enrolled": true,
-        "avatar": @res['blob_signed_id']
+        "about": "I like treats",
+        "major": "dog",
+        "avatar": 'eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--b4c897d77ef5bfe3be2e589428ff27a6ef6e18cb'
       }
 
       student_res = JSON.parse(response.body)

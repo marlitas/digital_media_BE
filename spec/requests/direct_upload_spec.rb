@@ -2,12 +2,12 @@ require 'rails_helper'
 
 RSpec.describe 'Direct Upload Requests' do
     it 'can send presigned url' do
-        post '/api/v1/presigned_url', body: {
+        post '/api/v1/presigned_url', params: {
             "file": {
             "filename": "test_upload",
-            "byte_size": 1111,
-            "checksum": "asdiohas",
-            "content_type": "application/pdf",
+            "byte_size": 369830,
+            "checksum": "jTLf6PNJHAxraPivOUT0lg==",
+            "content_type": "image/png",
             "metadata": {
                 "message": "active_storage_test"
             }
@@ -29,7 +29,7 @@ RSpec.describe 'Direct Upload Requests' do
     end
 
     it 'can create a direct upload' do
-       put "#{@url}", body: {
+       put "#{@url}", params: {
 
        },
        headers: @headers
