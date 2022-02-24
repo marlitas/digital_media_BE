@@ -55,29 +55,45 @@ RSpec.describe 'Student Requests' do
         expect(student['attributes']).to have_key('code')
       end
     end
+  end
 
-    it 'can send presigned url' do
-      post '/api/v1/presigned_url', body: {
-        "file": {
-          "filename": "test_upload",
-          "byte_size": 1111,
-          "checksum": "asdiohas",
-          "content_type": "application/pdf",
-          "metadata": {
-            "message": "active_storage_test"
-          }
+  describe 'create' do
+    before :each do
+      post '/api/v1/presigned_url', params: {
+            "file": {
+            "filename": "test_upload",
+            "byte_size": 369830,
+            "checksum": "jTLf6PNJHAxraPivOUT0lg==",
+            "content_type": "image/png",
+            "metadata": {
+                "message": "active_storage_test"
+            }
+            }
         }
+
+      @res = JSON.parse(response.body)
+
+      let(:avatar) { fixture_file_upload('../../assets/Performers without borders image.png')}
+
+      put @res['direct_upload']['url'], params: avatar, headers: @res['direct_upload']['headers']
+    end
+
+    it 'can create new student' do 
+      post '/api/v1/students/:id', body: {
+        "name": "Sparky Testerson",
+        "enrolled": true,
+        "avatar": @res['blob_signed_id']
       }
 
-      res = JSON.parse(response.body)
+      student_res = JSON.parse(response.body)
 
-      expect(res).to be_a(Hash)
-      expect(res).to have_key("direct_upload") 
-      expect(res).to have_key("blob_signed_id") 
-      expect(res['direct_upload']).to be_a(Hash)
-      expect(res['direct_upload']).to have_key("url")
-      expect(res['direct_upload']).to have_key("headers")
-      expect(res['direct_upload']['headers']).to be_a(Hash)
+      expect(student_res).to have_key('id')
+      expect(student_res).to have_key('attributes')
+      expect(student_res['attributes']).to have_key('enrolled')
+      expect(student_res['attributes']['enrolled']).to be(true)
+      expect(student_res['attributes']).to have_key('name')
+      expect(student_res['attributes']['name']).to be_a(String)
+      expect(student_res['attributes']).to have_key('avatar_url')
     end
   end
 end
