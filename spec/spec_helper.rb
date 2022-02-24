@@ -1,4 +1,5 @@
 require 'simplecov'
+# require 'action_dispatch/testing/test_process'
 SimpleCov.start 'rails'
 SimpleCov.add_filter ['spec', 'config']
 

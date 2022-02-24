@@ -56,4 +56,46 @@ RSpec.describe 'Student Requests' do
       end
     end
   end
+
+  describe 'create' do
+    before :each do
+      # post '/api/v1/presigned_url', params: {
+      #       "file": {
+      #       "filename": "test_upload",
+      #       "byte_size": 369830,
+      #       "checksum": "jTLf6PNJHAxraPivOUT0lg==",
+      #       "content_type": "image/png",
+      #       "metadata": {
+      #           "message": "active_storage_test"
+      #       }
+      #       }
+      #   }
+
+      # @res = JSON.parse(response.body)
+
+      # let(:avatar) { fixture_file_upload('../../assets/Performers without borders image.png')}
+
+      # put @res['direct_upload']['url'], params: avatar, headers: @res['direct_upload']['headers']
+    end
+
+    xit 'can create new student' do 
+      post '/api/v1/students', params: {
+        "name": "Sparky Testerson",
+        "enrolled": true,
+        "about": "I like treats",
+        "major": "dog",
+        "avatar": 'eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--b4c897d77ef5bfe3be2e589428ff27a6ef6e18cb'
+      }
+
+      student_res = JSON.parse(response.body)
+
+      expect(student_res).to have_key('id')
+      expect(student_res).to have_key('attributes')
+      expect(student_res['attributes']).to have_key('enrolled')
+      expect(student_res['attributes']['enrolled']).to be(true)
+      expect(student_res['attributes']).to have_key('name')
+      expect(student_res['attributes']['name']).to be_a(String)
+      expect(student_res['attributes']).to have_key('avatar_url')
+    end
+  end
 end
