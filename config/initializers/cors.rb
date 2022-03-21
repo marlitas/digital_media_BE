@@ -5,13 +5,13 @@
 
 # Read more: https://github.com/cyu/rack-cors
 
-Rails.application.config.middleware.insert_before ActionDispatch::Static, Rack::Cors do
-  allow do
-    origins 'http://digital-media-arts.herokuapp.com/', 'http://localhost:3000'
+# Rails.application.config.middleware.insert_before ActionDispatch::Static, Rack::Cors do
+#   allow do
+#     origins 'http://digital-media-arts.herokuapp.com/', 'http://localhost:3000'
 
-    resource '/api/v1/*',
-      headers: :any,
-      methods: [:get, :post, :put, :patch, :delete, :options, :head]
+#     resource '/api/v1/*',
+#       headers: :any,
+#       methods: [:get, :post, :put, :patch, :delete, :options, :head]
 
-  end
-end
+#   end
+# end
