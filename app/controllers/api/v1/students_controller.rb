@@ -1,6 +1,6 @@
 class Api::V1::StudentsController < ApplicationController 
   def show
-    student = Student.find(params['id'])
+    student = Student.find_by(name: params['name'])
     render json: StudentSerializer.new(student)
   end
 
