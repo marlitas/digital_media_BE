@@ -9,7 +9,7 @@ RSpec.describe 'Student Requests' do
     end
 
     it 'can return individual student' do
-      get "/api/v1/students/#{@s1.id}"
+      get "/api/v1/students/#{@s1.name}"
 
       res = JSON.parse(response.body)
 
