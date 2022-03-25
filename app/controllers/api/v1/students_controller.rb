@@ -1,3 +1,5 @@
+require 'pry'
+
 class Api::V1::StudentsController < ApplicationController 
   def show
     student = Student.find_by(name: params['name'])
@@ -7,6 +9,12 @@ class Api::V1::StudentsController < ApplicationController
   def index
     students = Student.all
     render json: StudentSerializer.new(students)
+  end
+
+  def update
+    student = Student.find(params['id'])
+    student.update(student_params)
+    render json: StudentSerializer.new(student)
   end
 
   def create
@@ -20,6 +28,6 @@ class Api::V1::StudentsController < ApplicationController
   private
 
   def student_params
-    params.permit(:name, :enrolled, :avatar, :about, )
+    params.permit(:name, :enrolled, :avatar, :about, :code, :major)
   end
 end

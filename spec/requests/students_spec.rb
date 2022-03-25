@@ -98,4 +98,25 @@ RSpec.describe 'Student Requests' do
       expect(student_res['attributes']).to have_key('avatar_url')
     end
   end
+
+  xit 'can update a student' do 
+    put '/api/v1/students', params: {
+      "name": "Sparky Testerson",
+      "enrolled": false,
+      "about": "I'm a really cool doggo",
+      "major": "bones",
+      "avatar": 'eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--b4c897d77ef5bfe3be2e589428ff27a6ef6e18cb'
+    }
+
+    student_res = JSON.parse(response.body)
+
+    expect(student_res).to have_key('id')
+    expect(student_res).to have_key('attributes')
+    expect(student_res['attributes']).to have_key('enrolled')
+    expect(student_res['attributes']['enrolled']).to be(false)
+    expect(student_res['attributes']).to have_key('name')
+    expect(student_res['attributes']['name']).to be_a(String)
+    expect(student_res['attributes']).to have_key('avatar_url')
+  end
+end
 end
