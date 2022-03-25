@@ -119,4 +119,3 @@ RSpec.describe 'Student Requests' do
     expect(student_res['attributes']).to have_key('avatar_url')
   end
 end
-end
