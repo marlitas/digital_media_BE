@@ -1,6 +1,6 @@
 class StudentSerializer
   include JSONAPI::Serializer
-  attributes :name, :about, :major, :enrolled, :code, :avatar_url
+  attributes :name, :about, :major, :enrolled, :code, :avatar_url, :video
 
   def self.new_avatar(student)
     {

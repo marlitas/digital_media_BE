@@ -5,7 +5,7 @@ class Api::V1::StudentsController < ApplicationController
   end
 
   def index
-    students = Student.all
+    students = Student.where(enrolled: true).order(:name)
     render json: StudentSerializer.new(students)
   end
 

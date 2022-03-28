@@ -51,8 +51,9 @@ RSpec.describe 'Student Requests' do
         expect(student['attributes']).to have_key('major')
         expect(student['attributes']['major']).to be_a(String)
         expect(student['attributes']).to have_key('enrolled')
-        expect(student['attributes']['enrolled']).to be_in([true, false])
+        expect(student['attributes']['enrolled']).to be(true)
         expect(student['attributes']).to have_key('code')
+        expect(student['attributes']).to have_key('video')
       end
     end
   end
