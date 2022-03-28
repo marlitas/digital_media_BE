@@ -26,6 +26,6 @@ class Api::V1::StudentsController < ApplicationController
   private
 
   def student_params
-    params.permit(:name, :enrolled, :avatar, :about, :code, :major)
+    params.permit(:name, :enrolled, :avatar, :about, :code, :major, :video)
   end
 end
